@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE ivy-module [
+	<!ENTITY vaadin.version "7.3.5">
+]>
+<ivy-module version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd">
+	<info organisation="org.skycrawl" module="search-showcase" />
+	<configurations>
+		<conf name="default" />
+	</configurations>
+	<dependencies defaultconf="default" defaultconfmapping="default->default">
+	
+		<!-- SECURITY (SERVER) -->
+		<dependency org="org.owasp.esapi" name="esapi" rev="2.1.0" />
+		<dependency org="org.owasp.encoder" name="encoder-esapi" rev="1.2" />
+	
+		<!-- MISCELLANEOUS (SERVER) -->
+    	<dependency org="org.rythmengine" name="rythm-engine" rev="1.0.1" />
+		<!-- <dependency org="com.github.spullara.mustache.java" name="compiler" rev="0.8.17" /> -->
+		<dependency org="org.reflections" name="reflections" rev="0.9.10" />
+		
+	</dependencies>
+</ivy-module>

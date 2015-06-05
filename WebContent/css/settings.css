@@ -1,0 +1,15 @@
+form
+{
+	margin-top: 25px;
+}
+
+input[type="submit"]
+{
+	margin-top: 25px;
+}
+
+.label
+{
+	display: inline-block;
+	width: 225px;
+}

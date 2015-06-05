@@ -1,0 +1,59 @@
+@// declare template arguments
+@args PassbackView view
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	@// a convenience for easier bookmarking
+	<title>@view.appName | passback-search</title>
+	<link rel="stylesheet" type="text/css" href="css/github.css">
+	<link rel="stylesheet" type="text/css" href="css/commons.css">
+	<link rel="stylesheet" type="text/css" href="css/passback.css">
+</head>
+<body>
+	<h2 id="search-examples">Malicious search terms:</h2>
+	<div class="vulnerability">
+		<p><b>Reflected XSS to inject tags:</b></p>
+		<pre>&quot;&gt;&lt;script&gt;alert(42)&lt;/script&gt;</pre>
+		<p>Mitigated by server-side HTML-escaping, unless the attacker performs a MitM attack. Open <a href="/search-showcase/settings">settings</a> and enable it.</p>
+	</div>
+	<div class="vulnerability">
+		<p><b>Reflected XSS to inject attributes:</b></p>
+		<pre>javascript:alert(42)</pre>
+		<p>Mitigated by server-side HTML-escaping, unless the attacker performs a MitM attack. Open <a href="/search-showcase/settings">settings</a> and enable it.</p>
+	</div>
+	
+	<h2 id="search-section">Search:</h2>
+	<datalist id="search-colors">
+    	<option value="red">Color - red</option>
+    	<option value="black">Color - black</option>
+    	<option value="blue">Color - blue</option>
+    	<option value="white">Color - white</option>
+    	<option value="green">Color - green</option>
+    	<option value="yellow">Color - yellow</option>
+  	</datalist>
+  	<form action="./passback" method="GET" accept-charset="UTF-8" novalidate>
+  		{{#hasSearchTerm}}
+  			<input id="search-field" type="search" name="search" list="search-colors" placeholder="Color to search for..." value="{{{searchTerm}}}" autofocus required />
+		{{/hasSearchTerm}}
+		{{^hasSearchTerm}}
+  			<input id="search-field" type="search" name="search" list="search-colors" placeholder="Color to search for..." autofocus required />
+		{{/hasSearchTerm}}
+		<input type="submit" value="search" />
+	</form>
+	{{#hasSearchTerm}}
+		<h2 id="search-results">Search results for <em>""</em>>:</h2>
+		{{#searchResults}}
+			<div class="search-result">
+				<a href="#">{{{title}}}</a>
+				<div class="url">{{{url}}}</div>
+				<div class="exerpt">{{{shortContent}}}</div>
+			</div>
+		{{/searchResults}}
+		{{^searchResults}}
+  			<p>No results found.</p>
+		{{/searchResults}}
+	{{/hasSearchTerm}}
+</body>
+</html>

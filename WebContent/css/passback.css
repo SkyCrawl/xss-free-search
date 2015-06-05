@@ -1,0 +1,40 @@
+.vulnerability
+{
+	margin-bottom: 25px;
+}
+
+#search-section
+{
+	margin-top: 50px;
+}
+
+#search-field
+{
+	width: 400px;
+}
+
+#search-results
+{
+	margin-top: 50px;
+	border-bottom: 1px solid #cccccc;
+	margin-bottom: 25px;
+}
+
+.search-result
+{
+	margin-bottom: 25px;
+}
+
+.search-result > .url
+{
+	color: #006621;
+	font-size: smaller;
+	line-height: normal;
+}
+
+.search-result > .exerpt
+{
+	color: #545454;
+	font-size: smaller;
+	line-height: normal;
+}
