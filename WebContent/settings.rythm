@@ -1,0 +1,60 @@
+@// import used views
+@import org.skycrawl.search.core.templating.views.*
+
+@// declare template arguments
+@args SettingsView view
+
+@// this template extends the main layout
+@extends(components.layout, "settings", "css/settings.css")
+
+@*
+	Page body of this template.
+*@
+
+@// declare a helper tag
+@def select(String label, String requestParam, boolean initialValue)
+{
+	<div class="label">@_forceEscapeAsTag(label):</div>
+ 	<select name="@_forceEscapeAsAttr(requestParam)" required>
+ 		@if(initialValue)
+ 		{
+ 			<option value="true" selected>Enabled</option>
+ 			<option value="false">Disabled</option>
+ 		}
+ 		else
+ 		{
+ 			<option value="true">Enabled</option>
+ 			<option value="false" selected>Disabled</option>
+ 		}
+	</select></br>
+}
+
+@// declare helping javascript
+<script type="text/javascript">
+	function setAll(enabled)
+	{
+		// first remove all selections
+		$("select > option[selected]").each(function()
+		{
+			$(this).removeAttr("selected");
+		});
+		
+		// and then set selections as desired
+		$("select > option[value=" + enabled + "]").each(function()
+		{
+			$(this).attr("selected", "");
+		});
+	}
+</script>
+
+@// the content
+<h2>Sanitization settings:</h2>
+<form action="./settings" method="POST" accept-charset="UTF-8" novalidate>
+	@select("HTML escaping", view.KEY_ESCAPE_HTML, view.shouldEscapeHTML())
+	@select("CSS escaping", view.KEY_ESCAPE_CSS, view.shouldEscapeCSS())
+	@select("JavaScript escaping", view.KEY_ESCAPE_JS, view.shouldEscapeJS())
+	@select("URL escaping", view.KEY_ESCAPE_URL, view.shouldEscapeURL())
+	<input type="submit" value="Apply" />
+	<input type="button" onclick="javascript:setAll(true)" value="Enable all" />
+	<input type="button" onclick="javascript:setAll(false)" value="Disable all" />
+</form>

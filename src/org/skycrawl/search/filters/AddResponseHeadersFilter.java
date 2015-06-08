@@ -16,16 +16,12 @@ import org.skycrawl.search.commons.settings.Settings;
 @WebFilter(filterName = "AddResponseHeadersFilter", description = "Sets HTTP response headers for all servlets.")
 public class AddResponseHeadersFilter implements Filter
 {
-	/**
-	 * @see Filter#init(FilterConfig)
-	 */
+	@Override
 	public void init(FilterConfig fConfig) throws ServletException
 	{
 	}
 	
-	/**
-	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
-	 */
+	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException
 	{
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
@@ -33,9 +29,7 @@ public class AddResponseHeadersFilter implements Filter
 		chain.doFilter(request, response);
 	}
 	
-	/**
-	 * @see Filter#destroy()
-	 */
+	@Override
 	public void destroy()
 	{
 	}

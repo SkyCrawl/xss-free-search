@@ -20,6 +20,10 @@ public abstract class AppUtils
 			{
 				result = !((String) value).isEmpty();
 			}
+			else if(value instanceof Object[])
+			{
+				result = ((Object[]) value).length > 0;
+			}
 			else if(value instanceof Collection<?>)
 			{
 				result = !((Collection<?>) value).isEmpty();

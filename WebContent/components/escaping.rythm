@@ -1,0 +1,47 @@
+@// declare reusable (also in child templates) escape-related inline tags
+@import org.skycrawl.search.commons.*
+@import org.skycrawl.search.commons.settings.Settings
+
+@// declare escaping routines that DO adhere to the current escape policy
+@def String _escapeAsTag(String input)
+{
+	return Settings.toView().shouldEscapeHTML() ? _forceEscapeAsTag(input) : input;
+}
+@def String _escapeAsAttr(String input)
+{
+	return Settings.toView().shouldEscapeHTML() ? _forceEscapeAsAttr(input) : input;
+}
+@def String _escapeAsCSS(String input)
+{
+	return Settings.toView().shouldEscapeCSS() ? _forceEscapeAsCSS(input) : input;
+}
+@def String _escapeAsJS(String input)
+{
+	return Settings.toView().shouldEscapeJS() ? _forceEscapeAsJS(input) : input;
+}
+@def String _escapeAsURL(String input)
+{
+	return Settings.toView().shouldEscapeURL() ? _forceEscapeAsURL(input) : input;
+}
+
+@// declare escaping routines that DO NOT adhere to the current escape policy
+@def String _forceEscapeAsTag(String input)
+{
+	return EscapeUtils.escapeAsTag(input);
+}
+@def String _forceEscapeAsAttr(String input)
+{
+	return EscapeUtils.escapeAsAttr(input);
+}
+@def String _forceEscapeAsCSS(String input)
+{
+	return EscapeUtils.escapeAsCSS(input);
+}
+@def String _forceEscapeAsJS(String input)
+{
+	return EscapeUtils.escapeAsJS(input);
+}
+@def String _forceEscapeAsURL(String input)
+{
+	return EscapeUtils.escapeAsURL(input);
+}

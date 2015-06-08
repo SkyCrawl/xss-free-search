@@ -9,7 +9,7 @@ import org.reflections.Reflections;
  * 
  * @author SkyCrawl
  */
-public class ReflectionUtils
+public abstract class ReflectionUtils
 {
 	/**
 	 * Gets all subtypes of {@link Object} in the given package.

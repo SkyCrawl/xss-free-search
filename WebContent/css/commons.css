@@ -8,3 +8,8 @@ input
 {
 	color: red;
 }
+
+iframe
+{
+	border: 0;
+}

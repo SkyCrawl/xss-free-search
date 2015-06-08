@@ -1,0 +1,32 @@
+@// import used views
+@import org.skycrawl.search.core.templating.views.search.*
+
+@// declare template arguments
+@args SearchView view
+
+@// include escaping routines
+@include("escaping.rythm")
+
+@*
+	Body of this template.
+*@
+@if(view.getSearchTerm())
+{
+ 	<h2 id="search-results">Search results for <mark><em>"@_escapeAsTag(view.getSearchTerm())"</em></mark>:</h2>
+ 	@if(view.getSearchResults())
+ 	{
+ 		@for(SearchResultView result : view.getSearchResults())
+ 		{
+ 			<div class="search-result">
+				<a href="#">@_escapeAsTag(result.getTitle())</a>
+				<div class="url">@_escapeAsTag(result.getUrl())</div>
+				<div class="exerpt">@_escapeAsTag(result.getShortContent())</div>
+			</div>
+ 		}
+ 	}
+ 	else
+ 	{
+ 		<p>No results found.</p>
+ 	}
+ }
+ 

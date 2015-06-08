@@ -12,10 +12,16 @@
 		<!-- SECURITY (SERVER) -->
 		<dependency org="org.owasp.esapi" name="esapi" rev="2.1.0" />
 		<dependency org="org.owasp.encoder" name="encoder-esapi" rev="1.2" />
+		
+		<!-- REST RUNTIME (SERVER) -->
+		<dependency org="com.sun.jersey" name="jersey-server" rev="1.19" />
+		<dependency org="com.sun.jersey" name="jersey-servlet" rev="1.19" />
+		<dependency org="com.sun.jersey" name="jersey-core" rev="1.19" />
+		<dependency org="javax.ws.rs" name="jsr311-api" rev="1.1.1" />
 	
 		<!-- MISCELLANEOUS (SERVER) -->
     	<dependency org="org.rythmengine" name="rythm-engine" rev="1.0.1" />
-		<!-- <dependency org="com.github.spullara.mustache.java" name="compiler" rev="0.8.17" /> -->
+    	<dependency org="com.google.guava" name="guava" rev="18.0" />
 		<dependency org="org.reflections" name="reflections" rev="0.9.10" />
 		
 	</dependencies>

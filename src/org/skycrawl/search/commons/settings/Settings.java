@@ -10,7 +10,7 @@ public class Settings
 	// PRIVATE HEADER DEFINITIONS
 	
 	private static final String HEADER_X_XSS_PROTECTION = "0; mode=block";
-	private static final String HEADER_CONTENT_SECURITY_POLICY = "unsafe-inline";
+	private static final String HEADER_CONTENT_SECURITY_POLICY = "child-src 'self'; unsafe-inline";
 	
 	//------------------------------------------------------------------------
 	// PRIVATE SETTINGS DEFINITIONS

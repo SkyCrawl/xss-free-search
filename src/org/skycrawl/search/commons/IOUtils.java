@@ -5,7 +5,7 @@ package org.skycrawl.search.commons;
  * 
  * @author SkyCrawl
  */
-public class IOUtils
+public abstract class IOUtils
 {
 	private static String	baseAbsAppPath	= null;
 

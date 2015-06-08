@@ -6,7 +6,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.skycrawl.search.core.templating.views.SearchResultView;
+import org.skycrawl.search.commons.AppUtils;
+import org.skycrawl.search.core.templating.views.search.SearchResultView;
 
 public abstract class DataMockup
 {
@@ -75,11 +76,14 @@ public abstract class DataMockup
 	public static List<SearchResultView> search(String searchTerm)
 	{
 		List<SearchResultView> searchResult = new ArrayList<SearchResultView>();
-		for(Entry<String, SearchResultView> entry : data.entrySet())
+		if(AppUtils.isObjectDefined(searchTerm))
 		{
-			if(entry.getKey().toLowerCase().contains(searchTerm.toLowerCase()))
+			for(Entry<String, SearchResultView> entry : data.entrySet())
 			{
-				searchResult.add(entry.getValue());
+				if(entry.getKey().toLowerCase().contains(searchTerm.toLowerCase()))
+				{
+					searchResult.add(entry.getValue());
+				}
 			}
 		}
 		return searchResult;

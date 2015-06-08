@@ -8,7 +8,7 @@
 	margin-top: 50px;
 }
 
-#search-field
+#search-field, #search-field-escaped
 {
 	width: 400px;
 }
@@ -16,7 +16,6 @@
 #search-results
 {
 	margin-top: 50px;
-	border-bottom: 1px solid #cccccc;
 	margin-bottom: 25px;
 }
 

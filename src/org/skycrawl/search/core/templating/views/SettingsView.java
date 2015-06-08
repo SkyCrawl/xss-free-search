@@ -1,41 +1,59 @@
 package org.skycrawl.search.core.templating.views;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class SettingsView extends AbstractRythmView
 {
-	private static final long	serialVersionUID	= 5662568104530920233L;
+	private final Map<String, Object> values;
 	
-	/*
-	 * Remember that all declared view options/fields must have identical names and values.
-	 */
-	
-	private final String escapeHTML = "escapeHTML";
+	public static final String KEY_ESCAPE_HTML = "escapeHTML";
+	public static final String KEY_ESCAPE_CSS = "escapeCSS";
+	public static final String KEY_ESCAPE_JS = "escapeJS";
+	public static final String KEY_ESCAPE_URL = "escapeURL";
 	
 	public SettingsView()
 	{
 		super();
+		
+		this.values = new HashMap<String,Object>();
 		restoreDefaults();
 	}
 	
-	public Boolean shouldEscapeHTML()
+	public boolean shouldEscapeHTML()
 	{
-		return getItem(escapeHTML);
+		return (boolean) values.get(KEY_ESCAPE_HTML);
 	}
-	public void setShouldEscapeHTML(Boolean enabled)
+	public void setEscapeHTML(boolean escapeHTML)
 	{
-		setItem(this, escapeHTML, enabled);
+		values.put(KEY_ESCAPE_HTML, escapeHTML);
 	}
 	
-	public String isDefined1(String input)
+	public boolean shouldEscapeCSS()
 	{
-		return "isDefined1";
+		return (boolean) values.get(KEY_ESCAPE_CSS);
 	}
-	public String isDefined2(String input)
+	public void setEscapeCSS(boolean escapeCSS)
 	{
-		return "isDefined2";
+		values.put(KEY_ESCAPE_CSS, escapeCSS);
 	}
-	public String isDefined3(String input)
+	
+	public boolean shouldEscapeJS()
 	{
-		return "isDefined3";
+		return (boolean) values.get(KEY_ESCAPE_JS);
+	}
+	public void setEscapeJS(boolean escapeJS)
+	{
+		values.put(KEY_ESCAPE_JS, escapeJS);
+	}
+	
+	public boolean shouldEscapeURL()
+	{
+		return (boolean) values.get(KEY_ESCAPE_URL);
+	}
+	public void setEscapeURL(boolean escapeURL)
+	{
+		values.put(KEY_ESCAPE_URL, escapeURL);
 	}
 	
 	//---------------------------------------------------
@@ -44,38 +62,17 @@ public class SettingsView extends AbstractRythmView
 	public void restoreDefaults()
 	{
 		// by default, all sanitizers are disabled
-		setShouldEscapeHTML(false);
-		
-		/*
-		for(Class<? extends ISanitizationFilter> filterClass : ReflectionUtils.getSubtypesFromPackage(Package.getPackage("org.skycrawl.search"), ISanitizationFilter.class))
-		{
-			// by default, all sanitizers are disabled
-			settings.setFilterEnabled(filterClass, false);
-		}
-		*/
+		setEscapeHTML(false);
+		setEscapeCSS(false);
+		setEscapeJS(false);
+		setEscapeURL(false);
 	}
 	
 	public void applyChange(String item, String value)
 	{
-		if(escapeHTML.equals(item))
+		if(values.containsKey(item))
 		{
-			setShouldEscapeHTML(Boolean.parseBoolean(value));
+			values.put(item, Boolean.parseBoolean(value));
 		}
 	}
-	
-	/*
-	public boolean isFilterEnabled(Class<? extends ISanitizationFilter> filterClass)
-	{
-		Boolean result = getVar(filterClass.getSimpleName());
-		return (result != null) && result;
-	}
-	public void setFilterEnabled(Class<? extends ISanitizationFilter> filterClass, boolean enabled)
-	{
-		setFilterEnabled(filterClass.getSimpleName(), enabled);
-	}
-	public void setFilterEnabled(String filterClassSimpleName, boolean enabled)
-	{
-		setVar(filterClassSimpleName, enabled);
-	}
-	*/
 }

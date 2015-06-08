@@ -1,0 +1,14 @@
+@// import used views
+@import org.skycrawl.search.core.templating.views.search.*
+
+@// declare template arguments
+@args SearchView view
+
+@// this template extends the main layout
+@extends(layout, "search", "css/search.css")
+
+@*
+	Body of this template.
+*@
+
+@searchResults(view)
