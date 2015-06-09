@@ -70,7 +70,7 @@ Special attention should be paid to the mechanism that generates pages in this a
 Why is this a good solution? Separation of concerns!
 * It is much easier to escape everything at the same time rather than do it "somewhere in the application".
 * It is easy to spot a variable (user input) that is not properly escaped/sanitized.
-* Each variable (user input) can be appropriately escaped "in-place" by the current context (HTML/CSS/Javascript/URL).
+* Each variable (user input) can be appropriately escaped "in-place" according to the current context (HTML/CSS/Javascript/URL).
 * Reusable template functions/macros can be defined to greatly enhance maintainability and security (effectively reduces the number of potential vulnerabilities).
 
 Page templates can be found [here](./WebContent) and [here](./WebContent/components).
