@@ -6,6 +6,9 @@ import org.skycrawl.search.core.templating.views.search.SearchView;
 
 public abstract class RythmTemplates
 {
+	//---------------------------------------------------------------
+	// SEARCH PAGES
+	
 	public static String viewPageback(SearchView view)
 	{
 		return Rythm.render("pageback.rythm", view);
@@ -21,6 +24,19 @@ public abstract class RythmTemplates
 		return Rythm.render("searchback.rythm", view);
 	}
 	
+	//---------------------------------------------------------------
+	// OTHER PAGES AND COMPONENTS
+
+	public static String viewPayloads()
+	{
+		return Rythm.render("components/maliciousPaylods.rythm");
+	}
+	
+	public static String viewSettings(SettingsView view)
+	{
+		return Rythm.render("settings.rythm", view);
+	}
+	
 	public static String viewSearchResultsForIFrame(SearchView view)
 	{
 		return Rythm.render("components/searchResultsWrapped.rythm", view);
@@ -29,10 +45,5 @@ public abstract class RythmTemplates
 	public static String viewSearchResultsForAjax(SearchView view)
 	{
 		return Rythm.render("components/searchResults.rythm", view);
-	}
-	
-	public static String viewSettings(SettingsView view)
-	{
-		return Rythm.render("settings.rythm", view);
 	}
 }

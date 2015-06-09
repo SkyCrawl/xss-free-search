@@ -11,17 +11,11 @@
 	Body of this template. Only values from "view" (constructed from servlet parameters) need to be escaped.
 *@
 @// first some information
-<h2>Malicious search terms:</h2>
-<div class="vulnerability">
-	<p><b>Reflected XSS to inject tags:</b></p>
-	<pre>&quot;&gt;&lt;script&gt;alert(42)&lt;/script&gt;</pre>
-	<p>Mitigated by server-side HTML-escaping, unless the attacker performs a MitM attack. Open <a href="./settings">settings</a> and enable it.</p>
-</div>
-<div class="vulnerability">
-	<p><b>Reflected XSS to inject attributes:</b></p>
-	<pre>" onload="alert(42)"</pre>
-	<p>Mitigated by server-side HTML-escaping, unless the attacker performs a MitM attack. Open <a href="./settings">settings</a> and enable it.</p>
-</div>
+<h2>Useful information &amp; links:</h2>
+<ul>
+	<li>Escaping is disabled by default. You can enable it in the <a href="./settings">settings</a>.
+	<li>Examples of malicious search payloads can be found <a href="./payloads">here</a>.
+</ul>
 
 <h2>Search:</h2>
 <datalist id="search-colors">

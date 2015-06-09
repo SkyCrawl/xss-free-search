@@ -47,8 +47,8 @@
 		        	"Accept": "text/html; charset=UTF-8"
 		        },
 		        url: "./services/search/body",
-		        processData: false, // data will not be sent as an HTTP parameter...
-		        data: query, // no need to escape request body... also, this avoids potential problems with unescaping using a different library
+		        processData: false, // data will NOT be sent as an HTTP parameter but rather in request body...
+		        data: query, // no need to escape request body... also, this avoids potential problems with unescaping on the server...
 		        success: function(responseHtml, textStatus, jqXHR)
 		        {
 		        	onSuccess(responseHtml);

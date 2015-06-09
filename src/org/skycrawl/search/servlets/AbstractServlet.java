@@ -14,9 +14,9 @@ public abstract class AbstractServlet extends HttpServlet
 	private static final long	serialVersionUID	= -8484850198652836918L;
 
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		resp.setContentType(getMimeType().toString());
+		response.setContentType(getMimeType().toString());
 	}
 	
 	protected MediaType getMimeType()

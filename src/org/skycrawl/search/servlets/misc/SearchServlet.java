@@ -1,4 +1,4 @@
-package org.skycrawl.search.servlets.search;
+package org.skycrawl.search.servlets.misc;
 
 import javax.servlet.annotation.WebServlet;
 

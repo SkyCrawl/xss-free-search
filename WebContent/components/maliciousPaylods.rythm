@@ -1,0 +1,18 @@
+@// this template extends the main layout
+@extends(layout, "hacking", "")
+
+@*
+	Body of this template. Only values from "view" (constructed from servlet parameters) need to be escaped.
+*@
+
+<h2>Malicious search payloads:</h2>
+<div class="vulnerability">
+	<p><b>Reflected XSS to inject tags:</b></p>
+	<pre>&quot;&gt;&lt;script&gt;alert(42)&lt;/script&gt;</pre>
+	<p>Mitigated by server-side HTML-escaping, unless the attacker performs a MitM attack.</p>
+</div>
+<div class="vulnerability">
+	<p><b>Reflected XSS to inject attributes:</b></p>
+	<pre>" onload="alert(42)"</pre>
+	<p>Mitigated by server-side HTML-escaping, unless the attacker performs a MitM attack.</p>
+</div>
