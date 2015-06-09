@@ -1,21 +1,31 @@
+h2:not(:first-of-type)
+{
+	margin-top: 50px;
+}
+
 .vulnerability
 {
 	margin-bottom: 25px;
 }
 
-#search-section
+#search-field
 {
-	margin-top: 50px;
+	width: 500px;
 }
 
-#search-field, #search-field-escaped
+#search-field-escaped
 {
-	width: 400px;
+	width: 100%;
+	overflow: scroll;
+}
+
+#search-back
+{
+	width: 100%;
 }
 
 #search-results
 {
-	margin-top: 50px;
 	margin-bottom: 25px;
 }
 

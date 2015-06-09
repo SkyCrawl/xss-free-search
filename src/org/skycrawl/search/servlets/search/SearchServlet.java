@@ -14,6 +14,6 @@ public class SearchServlet extends AbstractSearchServlet
 	@Override
 	protected String getViewOutput(SearchView view)
 	{
-		return RythmTemplates.viewSearchResults(view);
+		return RythmTemplates.viewSearchResultsForIFrame(view);
 	}
 }

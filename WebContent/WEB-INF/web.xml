@@ -3,7 +3,7 @@
   <display-name>XSS-free-search</display-name>
   
   <welcome-file-list>
-    <welcome-file>passback</welcome-file>
+    <welcome-file>pageback</welcome-file>
   </welcome-file-list>
    
   <filter-mapping>

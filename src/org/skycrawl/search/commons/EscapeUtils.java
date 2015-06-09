@@ -32,4 +32,9 @@ public abstract class EscapeUtils
 	{
 		return encoder.encodeForURL(input);
 	}
+	
+	public static String unescapeAsURL(String input) throws EncodingException
+	{
+		return encoder.decodeFromURL(input);
+	}
 }

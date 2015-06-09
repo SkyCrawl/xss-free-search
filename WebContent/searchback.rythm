@@ -1,0 +1,100 @@
+@// import used views
+@import org.skycrawl.search.core.templating.views.search.*
+
+@// declare template arguments
+@args SearchView view
+
+@// this template extends the search layout
+@extends(components.layoutSearch, view, "searchback")
+
+@*
+	Body of this template.
+*@
+@// the section template required by parent template (search form)
+@section("searchForm")
+{
+	@if(view.getSearchTerm())
+	{
+		<input id="search-field" type="search" name="search" list="search-colors" placeholder="Color to search for..." value="@_escapeAsAttr(view.getSearchTerm())" autofocus required />
+	}
+	else
+	{
+		<input id="search-field" type="search" name="search" list="search-colors" placeholder="Color to search for..." autofocus required />
+	}
+	<input id="search-button" type="button" value="search" />
+}
+
+@// the rest of the template to be appended to the parent template
+<script type="text/javascript">
+	/*
+	 * Bind search GUI with Ajax calls.
+	 */
+	var lastQuery = undefined;
+	
+	$("#search-button").on("click", function()
+	{
+		var query = $("#search-field").val(); // should return an empty string by default
+		if((query != "") && (query !== lastQuery))
+		{
+			lastQuery = query; // don't be affected when the user decides to click his brains out...
+			$.ajax({
+		        method: "POST",
+		        // contentType: "text/plain; charset=UTF-8",
+		        // accepts: "text/plain; charset=UTF-8", // don't use - causes "Accept: undefined" ...
+		        headers:
+		        {
+		        	"Content-Type": "text/plain; charset=UTF-8",
+		        	"Accept": "text/html; charset=UTF-8"
+		        },
+		        url: "./services/search/body",
+		        processData: false, // data will not be sent as an HTTP parameter...
+		        data: query, // no need to escape request body... also, this avoids potential problems with unescaping using a different library
+		        success: function(responseHtml, textStatus, jqXHR)
+		        {
+		        	onSuccess(responseHtml);
+		        },
+		        error: function(jqXHR, textStatus, errorThrown)
+		        {
+		        	onError(textStatus + ": " + errorThrown);
+		        }
+		    });
+		}
+	});
+	
+	/*
+	 * Functions handling results of Ajax calls.
+	 */
+	
+	function onSuccess(responseHtml)
+	{
+		/*
+		 * This solution relies on HTTPs - HTTPs responses are usually trusted and if an attacker's payload is received instead,
+		 * it means he broke HTTPs. In such a case, he could do pretty much anything with our site anyway leaving us more or less
+		 * defenceless...
+		 *
+		 * If our security department is paranoid and tells us to handle the above case, we can not escape the response as it is
+		 * a full blow HTML. Instead, we must use an HTML sanitizer!
+		 */
+		$("#search-back").html(responseHtml);
+	}
+	
+	function onError(message)
+	{
+		$("<div>" + $.encoder.encodeForHTML(message) + "</div>").dialog({
+			title: "Search ended up with an error...",
+			width: 450,
+			closeOnEscape: true,
+			draggable: true,
+			modal: true,
+			show: true,
+			buttons: [{
+				text: "Ok",
+				click: function()
+				{
+					$(this).dialog("close");
+				}
+			}]
+		});
+	}
+</script>
+<div id="search-back"></div>

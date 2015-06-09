@@ -8,7 +8,7 @@
 @extends(layout, "search", "css/search.css")
 
 @*
-	Body of this template.
+	Body of this template. Only values from "view" (constructed from servlet parameters) need to be escaped.
 *@
 
 @searchResults(view)

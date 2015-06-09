@@ -4,21 +4,29 @@
 @// declare template arguments
 @args SearchView view
 
-@// this template extends the main layout
-@extends(components.layout, "frameback", "css/search.css")
+@// this template extends the search layout
+@extends(components.layoutSearch, view, "frameback")
 
 @*
-	Page body of this template.
+	Body of this template.
 *@
-
-@components.searchWithForm()
+@// the section template required by parent template (search form)
+@section("searchForm")
 {
 	<form action="./search" method="GET" accept-charset="UTF-8" target="search-results-frame" novalidate>
-		<input id="search-field" type="search" name="search" list="search-colors" placeholder="Color to search for..." autofocus required />
+		@if(view.getSearchTerm())
+		{
+			<input id="search-field" type="search" name="search" list="search-colors" placeholder="Color to search for..." value="@_escapeAsAttr(view.getSearchTerm())" autofocus required />
+		}
+		else
+		{
+			<input id="search-field" type="search" name="search" list="search-colors" placeholder="Color to search for..." autofocus required />
+		}
 		<input type="submit" value="search" />
 	</form>
 }
 
+@// the rest of the template to be appended to the parent template
 <script type="text/javascript">
 	function normalizeFrame(frame)
 	{

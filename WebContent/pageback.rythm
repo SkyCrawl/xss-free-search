@@ -1,0 +1,30 @@
+@// import used views
+@import org.skycrawl.search.core.templating.views.search.*
+
+@// declare template arguments
+@args SearchView view
+
+@// this template extends the search layout
+@extends(components.layoutSearch, view, "pageback")
+
+@*
+	Body of this template.
+*@
+@// the section template required by parent template (search form)
+@section("searchForm")
+{
+	<form action="./pageback" method="GET" accept-charset="UTF-8" novalidate>
+		@if(view.getSearchTerm())
+		{
+			<input id="search-field" type="search" name="search" list="search-colors" placeholder="Color to search for..." value="@_escapeAsAttr(view.getSearchTerm())" autofocus required />
+		}
+		else
+		{
+			<input id="search-field" type="search" name="search" list="search-colors" placeholder="Color to search for..." autofocus required />
+		}
+		<input type="submit" value="search" />
+	</form>
+}
+
+@// the rest of the template to be appended to the parent template
+@components.searchResults(view)
