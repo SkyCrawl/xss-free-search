@@ -11,7 +11,7 @@
 	
 		<!-- SECURITY (SERVER) -->
 		<dependency org="org.owasp.esapi" name="esapi" rev="2.1.0" />
-		<dependency org="org.owasp.encoder" name="encoder-esapi" rev="1.2" />
+		<!-- <dependency org="org.owasp.encoder" name="encoder-esapi" rev="1.2" /> -->
 		
 		<!-- REST RUNTIME (SERVER) -->
 		<dependency org="com.sun.jersey" name="jersey-server" rev="&jersey.version;" />

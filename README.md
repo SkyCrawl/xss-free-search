@@ -26,12 +26,12 @@ While `ESAPI for Javascript` may be a little old, it is still one of the best li
 
 ## The project
 
-The initiative of this project is to show how to mitigate (above all) reflected XSS - by escaping all potentially unsafe HTML/CSS/Javascript content. By "potentially unsafe" we meant "potentially coming from users" (whether regular or malicious), even through obscure odds or ends. All user content is to be considered harmful. "User content" is anything except "safe content". "Safe content" is:
+The initiative of this project is to show how to mitigate (above all) reflected XSS - by escaping all potentially unsafe HTML/CSS/Javascript/URL content. By "potentially unsafe" we meant "potentially coming from users or attackers", even through obscure odds or ends. All user content is to be considered harmful. "User content" is anything except "safe content". "Safe content" is:
 * constant data used by your application,
 * safe content that passed appropriate safety measures (i.e. HTML escaping) and sanitizations,
-* something that is directly generated from safe content by your application whilst giving no chance to anybody to tamper with them.
+* something that is directly generated from safe content by your application whilst giving no chance to anybody to tamper with it.
 
-The above is shown on an example of a search mechanism. Three versions have been implemented:
+The above is shown on an example of a search feature. Three versions have been implemented:
 
 1. "Pageback"
 	* Search returns the whole page in response, causing a browser refresh.
@@ -74,4 +74,3 @@ Why is this a good solution? Separation of concerns!
 * Reusable template functions/macros can be defined to greatly enhance maintainability and security (effectively reduces the number of potential vulnerabilities).
 
 Page templates can be found [here](./WebContent) and [here](./WebContent/components).
-
