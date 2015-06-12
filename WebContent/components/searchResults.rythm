@@ -12,7 +12,8 @@
 *@
 @if(view.getSearchTerm())
 {
- 	<h2 id="search-results">Search results for <mark><em>"@_escapeAsTag(view.getSearchTerm())"</em></mark>:</h2>
+	@// notice: although it seems natural (first thing to come to mind), don't put the literal quotes outside the escaped string...
+ 	<h2 id="search-results">Search results for <mark><em>@_escapeAsTag('"' + view.getSearchTerm() + '"')</em></mark>:</h2>
  	@if(view.getSearchResults())
  	{
  		@for(SearchResultView result : view.getSearchResults())

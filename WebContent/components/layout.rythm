@@ -3,9 +3,9 @@
 @args String customCss = null
 
 @// declare reusable (also in child templates) inline tags
-@def _appName()
+@def String _appName()
 {
-	XSS My Love
+	return "XSS My Love";
 }
 
 @// include escaping routines
@@ -18,7 +18,25 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>@_appName() | @title</title>
+	@**
+	 * Although these variables are provided as constants in the code... who knows!
+	 *
+	 * 1) Perhaps someone "clever" will later create a page with user-defined content, paying no mind to check the
+	 * application's design! Why should he care anyway, when everything's working so wonderfully?
+	 *
+	 * 2) Perhaps someone "clever" will later put special characters in a page's title and it would just happen that
+	 * no real errors would be visible or noticed... until an attacker or pentesters manages to exploit them somehow!
+	 * I can well imagine that vulnerabilities like this could only happen with some browsers :).
+	 *
+	 * ...
+	 *
+	 * In other words, when developing the core/kernel of ANY application (HTMl layout in our case), it's good practice
+	 * to be paranoid and handle as much as you possibly can to avoid many problems down the road (and perhaps some really
+	 * nasty bugs in some cases). You never know what your libraries could eventually be used for so try to stay on the
+	 * safe side! The worst case would be if an attacker found an error like this and managed to do something really nasty
+	 * with it... and through your kernel that's been around for... years and decades, OMG!
+	 *@
+	<title>@_forceEscapeAsTag(_appName() + " | " + title)</title>
 	<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
 	<script type="text/javascript" src="js/jquery-ui-1.11.4/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="js/Class.create.js"></script>
@@ -26,9 +44,16 @@
 	<link rel="stylesheet" type="text/css" href="css/jquery-ui-themes-1.11.4/themes/ui-darkness/jquery-ui.min.css">
 	<link rel="stylesheet" type="text/css" href="css/github.css">
 	<link rel="stylesheet" type="text/css" href="css/commons.css">
-	@if(customCss != null)
+	@if(customCss)
 	{
-		<link rel="stylesheet" type="text/css" href="@customCss">
+		@**
+		 * Although these variables are provided as constants in the code... who knows! Perhaps someone "clever" will later
+		 * misuse your layouts to define several themes for a page and even put the desired template's name directly to
+		 * a GET parameter! In that case, we'd be screwed without escaping...
+		 *
+		 * Exercise for you: even with the below escaping - what's wrong with it?
+		 *@
+		<link rel="stylesheet" type="text/css" href="@_forceEscapeAsAttr(customCss)">
 	}
 </head>
 <body>

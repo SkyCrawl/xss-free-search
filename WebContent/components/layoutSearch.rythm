@@ -44,14 +44,20 @@ else
 @// bind the above form and field
 <script type="text/javascript">
 	var escapeField = $("#search-field-escaped");
-
+	
+	// escape escapeField's value after the page is loaded
+	escapeField.ready(setEscapedFieldValue(escapeField.val()));
+	
 	// bind '#search-field' with '#search-field-escaped'
-	$("#search-field").on("input", function()
+	$("#search-field").on("input", setEscapedFieldValue($(this).val()));
+	
+	function setEscapedFieldValue(value)
 	{
-    	escapeField.removeAttr("readonly");
-    	escapeField.val($.encoder.encodeForHTMLAttribute(undefined, $(this).val(), true));
+		escapeField.removeAttr("readonly");
+    	// exercise for you: why is there no need JS encode the following?
+    	escapeField.val($.encoder.encodeForHTMLAttribute(undefined, value, true));
     	escapeField.attr("readonly", "true");
-	});
+	}
 </script>
 
 @// render layout

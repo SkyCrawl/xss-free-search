@@ -68,18 +68,25 @@
 	function onSuccess(responseHtml)
 	{
 		/*
-		 * This solution relies on HTTPs - HTTPs responses are usually trusted and if an attacker's payload is received instead,
-		 * it means he broke HTTPs. In such a case, he could do pretty much anything with our site anyway leaving us more or less
-		 * defenceless...
+		 * This relies on HTTPs - HTTPs responses are usually trusted and if an attacker's payload is received instead, it means
+		 * he broke HTTPs. In such a case, he could do pretty much anything with our site anyway (e.g. inject his own content
+		 * directly into the site), leaving us quite defenceless...
 		 *
 		 * If our security department is paranoid and tells us to handle the above case, we can not escape the response as it is
-		 * a full blow HTML. Instead, we must use an HTML sanitizer!
+		 * a full blow HTML. Instead, we must use an HTML sanitizer! Alternatively, we can construct the HTML on the client and
+		 * have the webservice return only JSON data (should be simpler to escape/sanitize).
 		 */
 		$("#search-back").html(responseHtml);
 	}
 	
 	function onError(message)
 	{
+		/*
+		 * No need to JS encode because:
+	     * - HTTPs (see above);
+		 * - this is not server but client, the javascript is fully generated now and we only pass values around;
+		 * - the encoding function should never return an object and should always return a String or end up with an error.
+		 */
 		$("<div>" + $.encoder.encodeForHTML(message) + "</div>").dialog({
 			title: "Search ended up with an error...",
 			width: 450,
