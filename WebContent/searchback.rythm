@@ -83,7 +83,7 @@
 	{
 		/*
 		 * No need to JS encode because:
-	     * - HTTPs (see above);
+		 * HTTPs (see above);
 		 * - this is not server but client, the javascript is fully generated now and we only pass values around;
 		 * - the encoding function should never return an object and should always return a String or end up with an error.
 		 */

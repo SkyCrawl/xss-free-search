@@ -21,12 +21,11 @@
 	@**
 	 * Although these variables are provided as constants in the code... who knows!
 	 *
-	 * 1) Perhaps someone "clever" will later create a page with user-defined content, paying no mind to check the
+	 * 1) Perhaps someone "clever" will later create a page with user-defined content in title, paying no mind to the
 	 * application's design! Why should he care anyway, when everything's working so wonderfully?
 	 *
 	 * 2) Perhaps someone "clever" will later put special characters in a page's title and it would just happen that
 	 * no real errors would be visible or noticed... until an attacker or pentesters manages to exploit them somehow!
-	 * I can well imagine that vulnerabilities like this could only happen with some browsers :).
 	 *
 	 * ...
 	 *

@@ -54,9 +54,9 @@ else
 	function setEscapedFieldValue(value)
 	{
 		escapeField.removeAttr("readonly");
-    	// exercise for you: why is there no need JS encode the following?
-    	escapeField.val($.encoder.encodeForHTMLAttribute(undefined, value, true));
-    	escapeField.attr("readonly", "true");
+		// exercise for you: why is there no need JS encode the following?
+		escapeField.val($.encoder.encodeForHTMLAttribute(undefined, value, true));
+		escapeField.attr("readonly", "true");
 	}
 </script>
 

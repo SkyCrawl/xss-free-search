@@ -49,7 +49,7 @@ Each version has its own pros and cons. Each version suffers from the same type 
 
 ### How to launch
 
-This repository includes a generated `.war` file. Deploy it to a Servlet Container of choice and open the following URLs in your browser, after substituting `localhost:8080` for address to your Servlet Container:
+This repository includes a generated `.war` file, optimized for Tomcat 7. Deploy it to a Servlet Container of choice and open the following URLs in your browser, after substituting `localhost:8080` for address to your Servlet Container:
 * <http://localhost:8080/xss-free-search/pageback>
 * <http://localhost:8080/xss-free-search/frameback>
 * <http://localhost:8080/xss-free-search/searchback>
